@@ -19,6 +19,8 @@
   License along with this library; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-
   1301  USA
+
+  Modified: Mark Riddoch 19-11-2015 Add optional clock rate specification
 */
 #ifndef _MCP2515_H_
 #define _MCP2515_H_
@@ -68,8 +70,8 @@ class MCP_CAN
 
     INT8U mcp2515_readStatus(void);                                     /* read mcp2515's Status        */
     INT8U mcp2515_setCANCTRL_Mode(const INT8U newmode);                 /* set mode                     */
-    INT8U mcp2515_configRate(const INT8U canSpeed);                     /* set boadrate                 */
-    INT8U mcp2515_init(const INT8U canSpeed);                           /* mcp2515init                  */
+    INT8U mcp2515_configRate(const INT8U canSpeed, const INT8U clk);    /* set boadrate                 */
+    INT8U mcp2515_init(const INT8U canSpeed, const INT8U clk);          /* mcp2515init                  */
 
     void mcp2515_write_id( const INT8U mcp_addr,                        /* write can id                 */
                                const INT8U ext,
@@ -95,7 +97,7 @@ class MCP_CAN
 
 public:
     MCP_CAN(INT8U _CS);
-    INT8U begin(INT8U speedset);                              /* init can                     */
+    INT8U begin(INT8U speedset, INT8U clk = 16);                    /* init can                     */
     INT8U init_Mask(INT8U num, INT8U ext, INT32U ulData);           /* init Masks                   */
     INT8U init_Filt(INT8U num, INT8U ext, INT32U ulData);           /* init filters                 */
     INT8U sendMsgBuf(INT32U id, INT8U ext, INT8U len, INT8U *buf);  /* send buf                     */

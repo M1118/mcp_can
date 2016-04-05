@@ -158,94 +158,112 @@ INT8U MCP_CAN::mcp2515_setCANCTRL_Mode(const INT8U newmode)
 ** Function name:           mcp2515_configRate
 ** Descriptions:            set boadrate
 *********************************************************************************************************/
-INT8U MCP_CAN::mcp2515_configRate(const INT8U canSpeed)            
+INT8U MCP_CAN::mcp2515_configRate(const INT8U canSpeed, const INT8U clk)            
 {
     INT8U set, cfg1, cfg2, cfg3;
     set = 1;
-    switch (canSpeed) 
-    {
-        case (CAN_5KBPS):
-        cfg1 = MCP_16MHz_5kBPS_CFG1;
-        cfg2 = MCP_16MHz_5kBPS_CFG2;
-        cfg3 = MCP_16MHz_5kBPS_CFG3;
-        break;
+	if (clk == 16)
+	{
+	    switch (canSpeed) 
+	    {
+		case (CAN_5KBPS):
+		cfg1 = MCP_16MHz_5kBPS_CFG1;
+		cfg2 = MCP_16MHz_5kBPS_CFG2;
+		cfg3 = MCP_16MHz_5kBPS_CFG3;
+		break;
 
-        case (CAN_10KBPS):
-        cfg1 = MCP_16MHz_10kBPS_CFG1;
-        cfg2 = MCP_16MHz_10kBPS_CFG2;
-        cfg3 = MCP_16MHz_10kBPS_CFG3;
-        break;
+		case (CAN_10KBPS):
+		cfg1 = MCP_16MHz_10kBPS_CFG1;
+		cfg2 = MCP_16MHz_10kBPS_CFG2;
+		cfg3 = MCP_16MHz_10kBPS_CFG3;
+		break;
 
-        case (CAN_20KBPS):
-        cfg1 = MCP_16MHz_20kBPS_CFG1;
-        cfg2 = MCP_16MHz_20kBPS_CFG2;
-        cfg3 = MCP_16MHz_20kBPS_CFG3;
-        break;
-        
-        case (CAN_31K25BPS):
-        cfg1 = MCP_16MHz_31k25BPS_CFG1;
-        cfg2 = MCP_16MHz_31k25BPS_CFG2;
-        cfg3 = MCP_16MHz_31k25BPS_CFG3;
-        break;
+		case (CAN_20KBPS):
+		cfg1 = MCP_16MHz_20kBPS_CFG1;
+		cfg2 = MCP_16MHz_20kBPS_CFG2;
+		cfg3 = MCP_16MHz_20kBPS_CFG3;
+		break;
+		
+		case (CAN_31K25BPS):
+		cfg1 = MCP_16MHz_31k25BPS_CFG1;
+		cfg2 = MCP_16MHz_31k25BPS_CFG2;
+		cfg3 = MCP_16MHz_31k25BPS_CFG3;
+		break;
 
-        case (CAN_40KBPS):
-        cfg1 = MCP_16MHz_40kBPS_CFG1;
-        cfg2 = MCP_16MHz_40kBPS_CFG2;
-        cfg3 = MCP_16MHz_40kBPS_CFG3;
-        break;
+		case (CAN_40KBPS):
+		cfg1 = MCP_16MHz_40kBPS_CFG1;
+		cfg2 = MCP_16MHz_40kBPS_CFG2;
+		cfg3 = MCP_16MHz_40kBPS_CFG3;
+		break;
 
-        case (CAN_50KBPS):
-        cfg1 = MCP_16MHz_50kBPS_CFG1;
-        cfg2 = MCP_16MHz_50kBPS_CFG2;
-        cfg3 = MCP_16MHz_50kBPS_CFG3;
-        break;
+		case (CAN_50KBPS):
+		cfg1 = MCP_16MHz_50kBPS_CFG1;
+		cfg2 = MCP_16MHz_50kBPS_CFG2;
+		cfg3 = MCP_16MHz_50kBPS_CFG3;
+		break;
 
-        case (CAN_80KBPS):
-        cfg1 = MCP_16MHz_80kBPS_CFG1;
-        cfg2 = MCP_16MHz_80kBPS_CFG2;
-        cfg3 = MCP_16MHz_80kBPS_CFG3;
-        break;
+		case (CAN_80KBPS):
+		cfg1 = MCP_16MHz_80kBPS_CFG1;
+		cfg2 = MCP_16MHz_80kBPS_CFG2;
+		cfg3 = MCP_16MHz_80kBPS_CFG3;
+		break;
 
-        case (CAN_100KBPS):                                             /* 100KBPS                  */
-        cfg1 = MCP_16MHz_100kBPS_CFG1;
-        cfg2 = MCP_16MHz_100kBPS_CFG2;
-        cfg3 = MCP_16MHz_100kBPS_CFG3;
-        break;
+		case (CAN_100KBPS):                                             /* 100KBPS                  */
+		cfg1 = MCP_16MHz_100kBPS_CFG1;
+		cfg2 = MCP_16MHz_100kBPS_CFG2;
+		cfg3 = MCP_16MHz_100kBPS_CFG3;
+		break;
 
-        case (CAN_125KBPS):
-        cfg1 = MCP_16MHz_125kBPS_CFG1;
-        cfg2 = MCP_16MHz_125kBPS_CFG2;
-        cfg3 = MCP_16MHz_125kBPS_CFG3;
-        break;
+		case (CAN_125KBPS):
+		cfg1 = MCP_16MHz_125kBPS_CFG1;
+		cfg2 = MCP_16MHz_125kBPS_CFG2;
+		cfg3 = MCP_16MHz_125kBPS_CFG3;
+		break;
 
-        case (CAN_200KBPS):
-        cfg1 = MCP_16MHz_200kBPS_CFG1;
-        cfg2 = MCP_16MHz_200kBPS_CFG2;
-        cfg3 = MCP_16MHz_200kBPS_CFG3;
-        break;
+		case (CAN_200KBPS):
+		cfg1 = MCP_16MHz_200kBPS_CFG1;
+		cfg2 = MCP_16MHz_200kBPS_CFG2;
+		cfg3 = MCP_16MHz_200kBPS_CFG3;
+		break;
 
-        case (CAN_250KBPS):
-        cfg1 = MCP_16MHz_250kBPS_CFG1;
-        cfg2 = MCP_16MHz_250kBPS_CFG2;
-        cfg3 = MCP_16MHz_250kBPS_CFG3;
-        break;
+		case (CAN_250KBPS):
+		cfg1 = MCP_16MHz_250kBPS_CFG1;
+		cfg2 = MCP_16MHz_250kBPS_CFG2;
+		cfg3 = MCP_16MHz_250kBPS_CFG3;
+		break;
 
-        case (CAN_500KBPS):
-        cfg1 = MCP_16MHz_500kBPS_CFG1;
-        cfg2 = MCP_16MHz_500kBPS_CFG2;
-        cfg3 = MCP_16MHz_500kBPS_CFG3;
-        break;
-        
-        case (CAN_1000KBPS):
-        cfg1 = MCP_16MHz_1000kBPS_CFG1;
-        cfg2 = MCP_16MHz_1000kBPS_CFG2;
-        cfg3 = MCP_16MHz_1000kBPS_CFG3;
-        break;  
+		case (CAN_500KBPS):
+		cfg1 = MCP_16MHz_500kBPS_CFG1;
+		cfg2 = MCP_16MHz_500kBPS_CFG2;
+		cfg3 = MCP_16MHz_500kBPS_CFG3;
+		break;
+		
+		case (CAN_1000KBPS):
+		cfg1 = MCP_16MHz_1000kBPS_CFG1;
+		cfg2 = MCP_16MHz_1000kBPS_CFG2;
+		cfg3 = MCP_16MHz_1000kBPS_CFG3;
+		break;  
 
-        default:
-        set = 0;
-        break;
-    }
+		default:
+		set = 0;
+		break;
+	    }
+	}
+	else if (clk == 8)
+	{
+		switch (canSpeed) 
+		{
+			case (CAN_125KBPS):
+			cfg1 = MCP_8MHz_125kBPS_CFG1;
+			cfg2 = MCP_8MHz_125kBPS_CFG2;
+			cfg3 = MCP_8MHz_125kBPS_CFG3;
+			break;
+
+			default:
+			set = 0;
+			break;
+		}
+	}
 
     if (set) {
         mcp2515_setRegister(MCP_CNF1, cfg1);
@@ -304,7 +322,7 @@ void MCP_CAN::mcp2515_initCANBuffers(void)
 ** Function name:           mcp2515_init
 ** Descriptions:            init the device
 *********************************************************************************************************/
-INT8U MCP_CAN::mcp2515_init(const INT8U canSpeed)                       /* mcp2515init                  */
+INT8U MCP_CAN::mcp2515_init(const INT8U canSpeed, INT8U clk)                       /* mcp2515init                  */
 {
 
   INT8U res;
@@ -324,7 +342,7 @@ INT8U MCP_CAN::mcp2515_init(const INT8U canSpeed)                       /* mcp25
 #endif
 
                                                                         /* set boadrate                 */
-    if(mcp2515_configRate(canSpeed))
+    if(mcp2515_configRate(canSpeed, clk))
     {
 #if DEBUG_MODE
       Serial.print("set rate fall!!\r\n");
@@ -533,12 +551,12 @@ MCP_CAN::MCP_CAN(INT8U _CS)
 ** Function name:           init
 ** Descriptions:            init can and set speed
 *********************************************************************************************************/
-INT8U MCP_CAN::begin(INT8U speedset)
+INT8U MCP_CAN::begin(INT8U speedset, INT8U clk)
 {
     INT8U res;
 
     SPI.begin();
-    res = mcp2515_init(speedset);
+    res = mcp2515_init(speedset, clk);
     if (res == MCP2515_OK) return CAN_OK;
     else return CAN_FAILINIT;
 }

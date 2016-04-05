@@ -299,8 +299,16 @@
 #define MCP_16MHz_5kBPS_CFG3 (0x87)
 
 
+/*
+ *  speed 8M
+ */
+#define MCP_8MHz_125kBPS_CFG1 (0x03)
+#define MCP_8MHz_125kBPS_CFG2 (0x90)
+#define MCP_8MHz_125kBPS_CFG3 (0x02)
 
-#define MCPDEBUG        (0)
+
+
+#define MCPDEBUG        (1)
 #define MCPDEBUG_TXBUF  (0)
 #define MCP_N_TXBUFFERS (3)
 
